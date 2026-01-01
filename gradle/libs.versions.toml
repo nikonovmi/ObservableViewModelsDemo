@@ -1,0 +1,40 @@
+[versions]
+plugin-android = "8.11.1" # https://developer.android.com/studio/releases/gradle-plugin
+plugin-compose = "1.9.3" # https://github.com/JetBrains/compose-jb
+kotlin = "2.2.21"
+kotlin-ksp = "2.3.4"
+coroutines = "1.10.2"
+serialization = "1.9.0"
+skie = "0.10.8"
+
+# Libraries
+koin = "4.1.1"
+androidx-activityCompose = "1.12.1"
+androidx-core = "1.17.0"
+androidx-lifecycle = "2.10.0"
+
+[libraries]
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-androidCompose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "plugin-android" }
+androidLibrary = { id = "com.android.library", version.ref = "plugin-android" }
+kotlin = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinKSP = { id = "com.google.devtools.ksp", version.ref = "kotlin-ksp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "plugin-compose" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+skie = { id = "co.touchlab.skie", version.ref = "skie" }
