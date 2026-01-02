@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     kotlin("multiplatform")
     alias(libs.plugins.skie)
@@ -28,9 +26,11 @@ kotlin {
 
     sourceSets {
         androidMain.dependencies {
+            implementation(libs.koin.androidCompose)
             implementation(libs.androidx.lifecycle.viewmodel)
         }
         commonMain.dependencies {
+            implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines)
         }
         commonTest.dependencies {
