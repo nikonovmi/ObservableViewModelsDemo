@@ -1,10 +1,15 @@
 import SwiftUI
+import SharedSDK
 
 @main
 struct iOSApp: App {
+    init() {
+        doInitDI(configuration: PlatformConfiguration())
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CaptchaScreenView(viewModel: CaptchaDependencies().getViewModel())
         }
     }
 }
