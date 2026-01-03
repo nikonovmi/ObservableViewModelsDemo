@@ -1,5 +1,8 @@
 package com.mnikonov.observablevm
 
+import com.mnikonov.observablevm.swiftvm.SwiftUiAction
+import com.mnikonov.observablevm.swiftvm.SwiftUiState
+import com.mnikonov.observablevm.swiftvm.SwiftViewModel
 import com.mnikonov.observablevm.domain.CaptchaChallenge
 import com.mnikonov.observablevm.domain.CaptchaImage
 import com.mnikonov.observablevm.domain.CaptchaType
@@ -12,11 +15,14 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+@SwiftViewModel
 class CaptchaViewModel : ViewModel() {
     private val _challengeState = MutableStateFlow(ChallengeState.ACTIVE)
     private val _data = MutableStateFlow(
         ViewModelState(challenge = randomChallenge(), selected = emptySet()),
     )
+
+    @SwiftUiState
     val uiState = combine(
         _data,
         _challengeState,
@@ -40,6 +46,7 @@ class CaptchaViewModel : ViewModel() {
         }
     }.stateIn(coroutineScope, SharingStarted.Lazily, CaptchaViewState.Loading)
 
+    @SwiftUiAction
     fun onAction(action: CaptchaViewAction) {
         when (action) {
             is CaptchaViewAction.ToggleImage -> onImageClicked(action.image)

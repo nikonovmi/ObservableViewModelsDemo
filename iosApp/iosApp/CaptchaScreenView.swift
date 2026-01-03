@@ -9,16 +9,17 @@ import SharedSDK
 import SwiftUI
 
 struct CaptchaScreenView: View {
-    let viewModel: CaptchaViewModel
+    @StateObject private var viewModel: ObservableCaptchaViewModel
 
-    @State private var viewState: CaptchaViewState? = nil
-
+    init(viewModel: CaptchaViewModel) {
+        _viewModel = StateObject(
+            wrappedValue: ObservableCaptchaViewModel(viewModel)
+        )
+    }
+    
     var body: some View {
         ZStack {
-            switch viewState {
-            case nil:
-                CaptchaLoadingView()
-
+            switch viewModel.uiState {
             case is CaptchaViewStateLoading:
                 CaptchaLoadingView()
 
@@ -66,11 +67,6 @@ struct CaptchaScreenView: View {
             }
         }
         .padding(16)
-        .task {
-            for await state in viewModel.uiState {
-                self.viewState = state
-            }
-        }
     }
 }
 

@@ -72,6 +72,7 @@
 			buildConfigurationList = B6C06674786969FB74BCDB24 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
 				4823D257F3B6952B702DD77E /* Compile Kotlin Framework */,
+				4CC58FAF2F09D88C0006712E /* Run Script: generate observable view models */,
 				954FF99CB50C3E40DBF9CC84 /* Sources */,
 				9A2E92393E0BC1739A767A6B /* Frameworks */,
 				B9A2E989BE7349B7D3AF4E32 /* Resources */,
@@ -153,6 +154,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+		4CC58FAF2F09D88C0006712E /* Run Script: generate observable view models */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../build/swiftvm/swiftvm-manifest.json",
+			);
+			name = "Run Script: generate observable view models";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/iosApp/Generated/.swiftvm.stamp",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nROOT=\"${SRCROOT}/..\"\n\nMANIFEST=\"${ROOT}/build/swiftvm/swiftvm-manifest.json\"\nOUTDIR=\"${SRCROOT}/iosApp/Generated/\"\n\nmkdir -p \"$OUTDIR\"\n\n# fail fast if manifest missing (usually means Gradle/KSP didn't run)\nif [ ! -f \"$MANIFEST\" ]; then\n  echo \"SwiftObservableGen: manifest not found at:\"\n  echo \"  $MANIFEST\"\n  echo \"Run/attach your Gradle task that generates it before building iOS.\"\n  exit 1\nfi\n\nxcrun --sdk macosx swift run --package-path \"${ROOT}/tools/SwiftObservableGen\" SwiftObservableGen \\\n  --manifest \"$MANIFEST\" \\\n  --output \"$OUTDIR\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
