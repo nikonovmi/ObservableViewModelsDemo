@@ -17,12 +17,6 @@ internal data class SwiftVmEntry(
 )
 
 @Serializable
-internal data class EventEntry(
-    val property: String,
-    val typeSimpleName: String,
-)
-
-@Serializable
 internal data class StateEntry(
     val property: String,
     val typeSimpleName: String,
