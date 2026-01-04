@@ -1,3 +1,4 @@
+<!-- res/values/themes.xml -->
 <resources>
-    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="AppTheme" parent="android:Theme.Material.NoActionBar" />
 </resources>

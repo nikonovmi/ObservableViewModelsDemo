@@ -27,6 +27,8 @@ androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmode
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-androidCompose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 
+ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "kotlin-ksp" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "plugin-android" }
 androidLibrary = { id = "com.android.library", version.ref = "plugin-android" }
